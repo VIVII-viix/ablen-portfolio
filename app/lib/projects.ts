@@ -8,7 +8,13 @@ export type Project = {
   filePath: string;
 };
 
-const PROJECTS: Project[] = [
+export type Stats = {
+  total: number;
+  newest: number;
+  oldest: number;
+};
+
+export const PROJECTS: Project[] = [
   {
     slug: "kawaii-count",
     title: "Kawaii Count",
@@ -38,9 +44,27 @@ const PROJECTS: Project[] = [
     year: 2026,
     summary:
       "A Y8-esque website that allows aspiring game developers in iACADEMY to showcase their games for the other students to play while also allowing them to collaborate with each other.",
-    filePath: "baho-tae",
+    filePath: "",
   },
 ];
+
+export async function readProjects() {
+  return PROJECTS;
+}
+
+export async function readProject(slug: string) {
+  return PROJECTS.find((p) => p.slug === slug) ?? null;
+}
+
+export async function readStats(): Promise<Stats> {
+  await new Promise((go) => setTimeout(go, 2000));
+  const years = PROJECTS.map((p) => p.year);
+  return {
+    total: PROJECTS.length,
+    newest: Math.max(...years),
+    oldest: Math.min(...years),
+  };
+}
 
 export const getProjects = async () => PROJECTS;
 export const getProject = async (slug: string) =>

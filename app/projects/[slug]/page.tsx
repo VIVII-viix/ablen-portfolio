@@ -1,12 +1,23 @@
 import { notFound } from "next/navigation";
-import { getProject } from "@/app/lib/projects";
 import Link from "next/link";
 import styles from "../../css/project-page-style.module.css";
+import { fetchProject } from "@/app/lib/api";
 
 type Props = { params: Promise<{ slug: string }> };
+
+export const dynamic = "force-dynamic";
+
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
-  const project = await getProject(slug);
+
+  let project;
+  try {
+    project = await fetchProject(slug);
+  } catch (e) {
+    if (e instanceof Error && e.message === "404") notFound();
+    throw e;
+  }
+
   if (!project) notFound();
 
   return (

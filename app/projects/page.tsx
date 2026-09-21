@@ -1,14 +1,20 @@
-import { getProjects } from "@/app/lib/projects";
-import { ProjectSearch } from "./project-search";
+import { Suspense } from "react";
+import { RowsSkeleton, StatsSkeleton } from "./skeletons";
+import { ProjectStats } from "./project-stats";
+import { ProjectRows } from "./project-rows";
 
-import styles from "../css/projects-style.module.css";
+export const dynamic = "force-dynamic";
 
-export default async function ProjectsPage() {
-  const projects = await getProjects();
+export default function ProjectsPage() {
   return (
-    <main className={`main-content ${styles.override}`}>
-      <h1 className="page-title text-4xl font-bold">Projects</h1>
-      <ProjectSearch projects={projects} />
+    <main className="px-16 py-8">
+      <h1 className="mt-4 text-4xl font-bold">Projects</h1>
+      <Suspense fallback={<StatsSkeleton />}>
+        <ProjectStats />
+      </Suspense>
+      <Suspense fallback={<RowsSkeleton />}>
+        <ProjectRows />
+      </Suspense>
     </main>
   );
 }
