@@ -1,7 +1,8 @@
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import styles from "../../css/project-page-style.module.css";
-import { fetchProject } from "@/app/lib/api";
+import { fetchProject } from "@/lib/api";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -27,6 +28,18 @@ export default async function ProjectPage({ params }: Props) {
       </Link>
       <h1 className="text-4xl font-bold">{project.title}</h1>
       <p className="mt-2 text-neutral-500">Made in {project.year}</p>
+      <div className="flex items-center justify-center">
+        {project.imageUrl && (
+          <Image
+            src={project.imageUrl}
+            alt={project.title}
+            width={960}
+            height={540}
+            className="mt-6 h-80 w-auto rounded border object-contain"
+          />
+        )}
+      </div>
+
       <p className="mt-6 text-xl">{project.summary}</p>
     </main>
   );

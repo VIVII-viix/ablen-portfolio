@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { Project } from "@/app/lib/projects";
+import type { Project } from "@/lib/projects";
 import { ProjectList } from "./project-list";
 
 type Props = { projects: Project[] };
