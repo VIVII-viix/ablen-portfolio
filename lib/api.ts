@@ -1,5 +1,5 @@
 import "server-only";
-import type { Project, Stats } from "@/app/lib/projects";
+import type { Project, Stats } from "@/lib/projects";
 
 const BASE = process.env.API_BASE_URL;
 if (!BASE) throw new Error("Set API_BASE_URL in .env");

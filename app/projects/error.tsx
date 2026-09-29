@@ -1,6 +1,6 @@
 "use client";
 
-import { problemFor } from "@/app/lib/problem";
+import { problemFor } from "@/lib/problem";
 
 type Props = { error: Error; retry: () => void };
 

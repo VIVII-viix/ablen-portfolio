@@ -1,7 +1,7 @@
-import { fetchProjects } from "@/app/lib/api";
+import { fetchProjects } from "@/lib/api";
 import { ProjectSearch } from "./project-search";
 import { Problem } from "./problem";
-import { problemFor } from "../lib/problem";
+import { problemFor } from "../../lib/problem";
 
 export async function ProjectRows() {
   let projects;

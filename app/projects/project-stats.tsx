@@ -1,6 +1,6 @@
-import { fetchStats } from "@/app/lib/api";
+import { fetchStats } from "@/lib/api";
 import { Problem } from "./problem";
-import { problemFor } from "../lib/problem";
+import { problemFor } from "../../lib/problem";
 
 export async function ProjectStats() {
   let stats;
